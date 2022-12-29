@@ -38,6 +38,19 @@ import lombok.ToString;
  * 	: 한사람의 회원 정보(구매기록 포함)를 담기 위한 객체
  * 	  MEMBER(1) : PROD(N) -> HAS MANY
  * 	  1 : 1 -> HAS A
+ * 
+ * ** 데이터매퍼나 ORM을 이용한 테이블 조인 방법
+ * 	ex) 회원 정보 상세 조회시 구매 상품 기록을 함께 조회함.
+ * 1. 대상 테이블 선택
+ * 	  MEMBER, CART(CART_MEMBER, CART_PROD), PROD
+ * 2. 각 테이블로부터 데이터를 바인딩할 vo 설계
+ * 	  MemberVO, ProdVO
+ * 3. 각 테이블의 relation을 VO 사이에 has 관계로 반영
+ * 	   1(main):N -> has many, MemberVO has many ProdVO(collection)
+ * 	   1(main):1 -> has a   , ProdVO has a BuyerVO
+ * 4. resultType 대신 resultMap 으로 바인딩 설정.
+ *    has many : collection
+ *    has a    : association
  */
 //@Getter
 //@Setter

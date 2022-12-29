@@ -116,6 +116,34 @@
 							<th>마일리지</th>
 						</tr>
 					</thead>
+					<tbody>
+						<c:set var="prodList" value="${member.prodList}"/>
+						<c:choose>
+							<c:when test="${not empty prodList }">
+								<c:forEach items="${prodList }" var="prod">
+									<tr>
+										<td>${prod.prodId }</td>
+										<td>
+											<c:url value="/prod/prodView.do" var="prodViewURL">
+												<c:param name="what" value="${prod.prodId }"/>
+											</c:url>
+											<a href="${prodViewURL }">${prod.prodName }</a>
+										</td>
+										<td>${prod.lprodNm }</td>
+										<td>${prod.buyer.buyerName }</td>
+										<td>${prod.prodCost }</td>
+										<td>${prod.prodPrice }</td>
+										<td>${prod.prodMileage }</td>
+									</tr>
+								</c:forEach>							
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="7">구매기록 없음.</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</tbody>
 				</table>
 			</td>
 		</tr>
