@@ -17,7 +17,6 @@ import oracle.jdbc.proxy.annotation.GetProxy;
 @ToString
 public class PagingVO<T> {
 	
-	
 	public PagingVO(int screenSize, int blockSize) {
 		super();
 		this.screenSize = screenSize;
@@ -38,10 +37,15 @@ public class PagingVO<T> {
 	
 	private List<T> dataList;
 	
+	private SearchVO simpleCondition;
+	
+	public void setSimpleCondition(SearchVO simpleCondition) {
+		this.simpleCondition = simpleCondition;
+	}
+	
 	public void setDataList(List<T> dataList) {
 		this.dataList = dataList;
 	}
-	
 	
 	//이 메소드가 호출되는 시점에서 계산됨
 	public void setTotalRecord(int totalRecord) {
@@ -57,7 +61,7 @@ public class PagingVO<T> {
 		startPage = endPage - (blockSize - 1);
 	}
 	
-	private final String APATTERN = "<a href='?page=%d'>%s</a>";
+	private final String APATTERN = "<a class='paging' href='#' data-page='%d'>%s</a>";
 	
 	public String getPagingHTML() {
 		StringBuffer html = new StringBuffer();

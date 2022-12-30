@@ -30,8 +30,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> retrieveMemberList(PagingVO<MemberVO> pagingVO) {
-		pagingVO.setTotalRecord(memberDAO.selectTotalRecord());
+	public List<MemberVO> retrieveMemberList(PagingVO<MemberVO> pagingVO) { //simplecondition이 들어있음
+		pagingVO.setTotalRecord(memberDAO.selectTotalRecord(pagingVO));
 		
 		List<MemberVO> memberList = memberDAO.selectMemberList(pagingVO);
 		

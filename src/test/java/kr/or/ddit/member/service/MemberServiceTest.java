@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.PagingVO;
 
 public class MemberServiceTest {
    private MemberService service = new MemberServiceImpl();

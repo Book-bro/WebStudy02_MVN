@@ -9,6 +9,21 @@
 		</collection>
 	</resultMap>
 
+	<sql id="searchFrag">
+		<where>
+			<if test="simpleCondition neq null and @org.apache.commons.lang3.StringUtils@isNotBlank(simpleCondition.searchWord)">
+				<choose>
+					<when test="simpleCondition.searchType eq 'name'">
+      					INSTR(PROD_NAME, #{simpleCondition.searchWord}) > 0
+      				</when>
+      				<otherwise>
+      					INSTR(PROD_NAME, #{simpleCondition.searchWord}) > 0
+      				</otherwise>
+				</choose>
+			</if>
+		</where>
+	</sql>
+
 	<select id="selectProd" parameterType="String" resultMap="prodMap">
 		WITH CARTVIEW AS (
           SELECT CART_PROD
@@ -30,4 +45,13 @@
       WHERE   PROD_ID = #{prodId}  
 	</select>
 
+	<select id="selectTotalRecord" resultType="int" parameterType="PagingVO">
+		SELECT COUNT(*)
+		FROM PROD
+		<include refid="searchFrag"/>
+	</select>
+	
+	<select id="selectProdList" resultType="ProdVO" parameterType="PagingVO">
+		
+	</select>
 </mapper>

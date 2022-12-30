@@ -12,7 +12,7 @@ import kr.or.ddit.vo.PagingVO;
  *
  */
 public interface MemberDAO {
-	public int selectTotalRecord();
+	public int selectTotalRecord(PagingVO<MemberVO> pagingVO);
 	
 	/**
 	 * 회원 신규 등록

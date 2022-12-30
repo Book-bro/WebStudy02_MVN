@@ -56,10 +56,51 @@
 		<tr>
 			<td colspan="7">
 				${pagingVO.pagingHTML }
+				<div id="searchUI">
+					<select name="searchType">
+						<option value="">전체</option>
+						<option value="name">이름</option>
+						<option value="address">주소1</option>
+					</select>
+					<input type="text" name="searchWord" />
+					<input type="button" id="searchBtn" value="검색" />
+				</div>
 			</td>
 		</tr>
 	</tfoot>
 </table>
+<h4>Hidden Form</h4>
+<form id="searchForm">
+	<input type="text" name="page"/>
+	<input type="text" name="searchType"/>
+	<input type="text" name="searchWord"/>
+</form>
+<script type="text/javascript">
+	$("[name=searchType]").val("${pagingVO.simpleCondition.searchType}")
+	$("[name=searchWord]").val("${pagingVO.simpleCondition.searchWord}")
+	
+	let searchForm = $("#searchForm");
+	let searchUI = $("#searchUI").on("click", "#searchBtn", function(){
+		let inputs = searchUI.find(":input[name]");
+		$.each(inputs, function(index, input){
+			let name = this.name;
+			let value = $(this).val();
+			searchForm.find("[name="+name+"]").val(value);
+		});
+		searchForm.submit();
+	});
+	
+	$("a.paging").on("click", function(event){
+		event.preventDefault();
+		let page = $(this).data("page");
+		if(!page){
+			return false;
+		}
+		searchForm.find("[name=page]").val(page);
+		searchForm.submit();
+		return false;
+	});
+</script>
 <jsp:include page="/includee/postScript.jsp"/>
 </body>
 </html>

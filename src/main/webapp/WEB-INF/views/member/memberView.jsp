@@ -101,6 +101,9 @@
 				</td>
 			</tr>
 		</c:if>
+		<c:if test="">
+		
+		</c:if>
 		<tr>
 			<th>구매기록</th>
 			<td>

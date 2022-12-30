@@ -18,6 +18,7 @@ public interface MemberService {
 	 * @return 아이디 중복으로 인한 실패(PKDUPLICATED), 가입 성공(OK), 가입 실패(FAIL)
 	 */
 	public ServiceResult createMember(MemberVO member); //0,1 만 보면 식별성은 없음
+	
 	public List<MemberVO> retrieveMemberList(PagingVO<MemberVO> pagingVO);
 	/**
 	 * 회원 정보 상세 조회

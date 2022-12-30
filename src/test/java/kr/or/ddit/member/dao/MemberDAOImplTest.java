@@ -37,7 +37,7 @@ public class MemberDAOImplTest {
 	@Test
 	public void testSelectMemberList() {
 		PagingVO<MemberVO> pagingVO = new PagingVO<>();
-		pagingVO.setTotalRecord(dao.selectTotalRecord());
+		pagingVO.setTotalRecord(dao.selectTotalRecord(pagingVO));
 		pagingVO.setCurrentPage(2);
 		
 		List<MemberVO> memberList = dao.selectMemberList(pagingVO);

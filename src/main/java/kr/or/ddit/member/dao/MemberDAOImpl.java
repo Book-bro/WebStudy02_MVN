@@ -35,14 +35,14 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	
 	
-	//페이징 처리시 selectnenberlist와 한세트
+	//페이징 처리시 selectmemberlist와 한세트
 	@Override
-	public int selectTotalRecord() {
+	public int selectTotalRecord(PagingVO<MemberVO> pagingVO) {
 		try(
 			SqlSession sqlSession =  sqlSessionFactory.openSession();
 		){
 			MemberDAO mapperProxy = sqlSession.getMapper(MemberDAO.class); 
-			return mapperProxy.selectTotalRecord();
+			return mapperProxy.selectTotalRecord(pagingVO);
 		}
 	}
 
