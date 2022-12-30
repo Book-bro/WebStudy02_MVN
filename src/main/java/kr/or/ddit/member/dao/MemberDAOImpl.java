@@ -16,6 +16,7 @@ import kr.or.ddit.memo.dao.MemoDAO;
 import kr.or.ddit.mybatis.MybatisUtils;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.MemoVO;
+import kr.or.ddit.vo.PagingVO;
 
 public class MemberDAOImpl implements MemberDAO{
 	
@@ -32,14 +33,26 @@ public class MemberDAOImpl implements MemberDAO{
 			return rowcnt;
 		}
 	}
+	
+	
+	//페이징 처리시 selectnenberlist와 한세트
+	@Override
+	public int selectTotalRecord() {
+		try(
+			SqlSession sqlSession =  sqlSessionFactory.openSession();
+		){
+			MemberDAO mapperProxy = sqlSession.getMapper(MemberDAO.class); 
+			return mapperProxy.selectTotalRecord();
+		}
+	}
 
 	@Override
-	public List<MemberVO> selectMemberList() {
+	public List<MemberVO> selectMemberList(PagingVO<MemberVO> pagingVO) {
 		try(
 			SqlSession sqlSession =  sqlSessionFactory.openSession();
 		){
 			MemberDAO mapperProxy = sqlSession.getMapper(MemberDAO.class); //계속 생성해주므로 전역으로 만들 필요성이 있음, 그것이 mybatis scanner
-			return mapperProxy.selectMemberList();
+			return mapperProxy.selectMemberList(pagingVO);
 		}
 		
 	}

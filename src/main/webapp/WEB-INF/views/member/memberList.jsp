@@ -13,6 +13,7 @@
 <table>
 	<thead>
 		<tr>
+			<th>일련번호</th>
 			<th>회원아이디</th>
 			<th>회원명</th>
 			<th>이메일</th>
@@ -23,10 +24,12 @@
 		</tr>
 	</thead>
 	<tbody>
+		<c:set var="memberList" value="${pagingVO.dataList }"></c:set>
 		<c:choose>
 			<c:when test="${not empty memberList }">
 				<c:forEach items="${memberList }" var="member">
 					<tr>
+						<td>${member.rnum}</td>
 						<td>${member.memId }</td>
 						<td>
 							<c:url value="/member/memberView.do" var="viewURL">
@@ -49,7 +52,19 @@
 			</c:otherwise>
 		</c:choose>
 	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="7">
+				${pagingVO.pagingHTML }
+			</td>
+		</tr>
+	</tfoot>
 </table>
 <jsp:include page="/includee/postScript.jsp"/>
 </body>
 </html>
+
+
+
+
+
