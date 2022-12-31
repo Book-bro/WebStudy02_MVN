@@ -20,7 +20,7 @@ import kr.or.ddit.vo.PagingVO;
 
 public class MemberDAOImpl implements MemberDAO{
 	
-	private SqlSessionFactory sqlSessionFactory = MybatisUtils.getSessionFactory();
+	private SqlSessionFactory sqlSessionFactory = MybatisUtils.getSqlSessionFactory();
 	
 	@Override
 	public int insertMember(MemberVO member) {

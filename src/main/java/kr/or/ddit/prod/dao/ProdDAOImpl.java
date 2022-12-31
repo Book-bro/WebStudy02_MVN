@@ -11,7 +11,7 @@ import kr.or.ddit.vo.ProdVO;
 
 public class ProdDAOImpl implements ProdDAO {
 	//마이바티스와 의존 관계
-	private SqlSessionFactory sqlSessionFactory = MybatisUtils.getSessionFactory();
+	private SqlSessionFactory sqlSessionFactory = MybatisUtils.getSqlSessionFactory();
 	
 	@Override
 	public ProdVO selectProd(String prodId) {

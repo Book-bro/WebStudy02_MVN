@@ -10,7 +10,7 @@ import kr.or.ddit.vo.MemoVO;
 
 public class MemoDAOImpl implements MemoDAO {
 	
-	private SqlSessionFactory SqlSessionFactory = MybatisUtils.getSessionFactory();  //무조건 지역변수로만 사용
+	private SqlSessionFactory SqlSessionFactory = MybatisUtils.getSqlSessionFactory();  //무조건 지역변수로만 사용
 	
 	@Override
 	public List<MemoVO> selectMemoList() {
@@ -28,7 +28,7 @@ public class MemoDAOImpl implements MemoDAO {
 		try(
 			SqlSession sqlSession =  SqlSessionFactory.openSession(); //트랜잭션(ACID) 시작
 		){
-			MemoDAO mapperProxy = sqlSession.getMapper(MemoDAO.class);
+			MemoDAO mapperProxy = sqlSession.getMapper(MemoDAO.class); //config.xml에서 설정한 mapper
 			int rowcnt = mapperProxy.insertMemo(memo); //프록시 사용 방법, 밑의 문제를 해결해줌
 //			int rowcnt = sqlSession.insert("kr.or.ddit.memo.dao.MemoDAO.insertMemo", memo); //id만 넘겨도 오류가 안나서 실수를 많이하기에 다른방법도 있음
 			sqlSession.commit(); //insert, update, delete는 commit해줘야함, 트랜잭션 종료
