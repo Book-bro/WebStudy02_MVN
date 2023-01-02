@@ -1,5 +1,7 @@
 package kr.or.ddit.prod.service;
 
+import java.util.List;
+
 import kr.or.ddit.prod.dao.ProdDAO;
 import kr.or.ddit.prod.dao.ProdDAOImpl;
 import kr.or.ddit.vo.PagingVO;
@@ -21,7 +23,10 @@ public class ProdServiceImpl implements ProdService{
 
 	@Override
 	public void retrieveProdList(PagingVO<ProdVO> pagingVO) {
-		
+		int totalRecord = prodDAO.selectTotalRecord(pagingVO);
+		pagingVO.setTotalRecord(totalRecord);
+		List<ProdVO> dataList = prodDAO.selectProdList(pagingVO);
+		pagingVO.setDataList(dataList);
 	}
 
 }

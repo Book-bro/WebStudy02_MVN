@@ -17,7 +17,7 @@ public interface ProdDAO {
 	 * 검색 조건에 맞는 레코드 수 반환
 	 * @param pagingVO
 	 */
-	public void selectTotalRecord(PagingVO<ProdVO> pagingVO);
+	public int selectTotalRecord(PagingVO<ProdVO> pagingVO);
 	
 	/**
 	 * 검색 조건과 현재 페이지에 맞는 상품 목록 조회

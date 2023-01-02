@@ -15,6 +15,7 @@ import lombok.ToString;
 @EqualsAndHashCode(of="prodId")
 @ToString(exclude="prodDetail") //타입이 crob라 부하가 걸릴수 있으므로 설정해줌
 public class ProdVO implements Serializable{
+	private int rnum;
 	private String prodId;
 	private String prodName;
 	
@@ -42,6 +43,8 @@ public class ProdVO implements Serializable{
 	private Integer prodMileage;
 	
 	private Set<MemberVO> memberSet; // has many
+	
+	private int memCount;
 }
 
 

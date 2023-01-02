@@ -24,12 +24,12 @@ public class ProdDAOImpl implements ProdDAO {
 	}
 
 	@Override
-	public void selectTotalRecord(PagingVO<ProdVO> pagingVO) {
+	public int selectTotalRecord(PagingVO<ProdVO> pagingVO) {
 		try(
 			SqlSession sqlSession =  sqlSessionFactory.openSession();
 		){
 			ProdDAO mapperProxy = sqlSession.getMapper(ProdDAO.class); 
-			mapperProxy.selectTotalRecord(pagingVO);
+			return mapperProxy.selectTotalRecord(pagingVO);
 		}
 		
 	}
